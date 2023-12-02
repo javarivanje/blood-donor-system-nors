@@ -1,0 +1,35 @@
+services:
+  db:
+    container_name: postgres
+    image: postgres
+    environment:
+      POSTGRES_USER: milos
+      POSTGRES_PASSWORD: password
+      PGDATA: /data/postgres
+    volumes:
+      - db:/data/postgres
+    ports:
+      - "5332:5432"
+    networks:
+      - db
+    restart: unless-stopped
+
+  blood-donor-system-nors:
+    container_name: blood-donor-system-nors
+    image: mlsbace/blood-donor-system-nors:latest
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/bds
+    ports:
+      - "8088:8081"
+    networks:
+      - db
+    depends_on:
+      - db
+    restart: unless-stopped
+
+networks:
+  db:
+    driver: bridge
+
+volumes:
+  db:
