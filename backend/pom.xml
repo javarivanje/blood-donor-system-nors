@@ -171,7 +171,6 @@
 					</from>
 					<to>
 						<image>docker.io/${docker.username}/${docker.image.name}:${docker.image.tag}</image>
-						// docker.io/mlsbace/blood-donor-system-nors:.....
 						<tags>
 							<tag>latest</tag>
 						</tags>
